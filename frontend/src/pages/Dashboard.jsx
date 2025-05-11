@@ -21,7 +21,7 @@ const Dashboard = () => {
                 <DataViewComponent title={"Total Income"} component={<Slider sliderData={totalIncome} />} />
                 <DataViewComponent title={"Due Fees"} component={<Slider sliderData={dueFees} />} />
                 <DataViewComponent title={"Membership Ending"} component={<ListTileDashboard listData={membEnding} />} />
-                <DataViewComponent title={"Pending Salary \u00A0 \u00A0 \u00A0 \u00A0"} component={<ListTile listData={salaryDue} />} />
+                <DataViewComponent title={"Pending Salary \u00A0 \u00A0 \u00A0 \u00A0"} component={<ListTileDashboard listData={salaryDue} />} />
             </section>
             <BottomNav />
         </>
