@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Joan";
+  src: url("./assets/Joan/Joan-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0) inset !important; /* background fix */
+  -webkit-text-fill-color: white !important; /* text color */
+  transition: background-color 5000s ease-in-out 0s;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+}
