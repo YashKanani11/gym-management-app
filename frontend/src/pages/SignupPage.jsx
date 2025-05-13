@@ -55,10 +55,11 @@ const SignupPage = () => {
                 });
                 console.log("Response from backend", res);
                 if (res.status == 200) {
+                    alert(`Signup successfull Username: ${res.userName} & mailID: ${mailID}`)
                     navigate('/login')
                 }
             } catch (error) {
-                if (error.response.data.status === 'preExistingUser') {
+                if (error.response.data?.status === 'preExistingUser') {
                     alert("Please Login Existing User")
                     setSwitchErrorState("Please Login Existing User")
                 }

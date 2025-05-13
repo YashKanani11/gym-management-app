@@ -38,7 +38,7 @@ const LoginPage = () => {
                 const res = await axios.post('http://localhost:5000/api/admin/login', {
                     mailID: form.mailID,
                     password: form.password
-                })
+                }, { withCredentials: true })
                 if (res.status == 200) {
                     console.log(res.data.user)
                     alert(`Login successful ${res.data.user}`)

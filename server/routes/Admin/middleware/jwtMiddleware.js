@@ -10,15 +10,20 @@ const jwtMiddleware = (req, res, next) => {
       });
     }
     const decoded = jwt.verify(token, "YK2002.yk");
+    console.log("Token:", req.cookies.token);
     res.user = decoded;
+    console.log(res.user);
+    next();
   } catch (error) {
     console.log(
       "Encountered error while fetching token in jwtMiddleware",
       error
     );
     return res.status(401).json({
-      status: Unsuccessfull,
+      status: "Unsuccessfull",
       message: "Encountered error while fetching token in jwtMiddleware",
     });
   }
 };
+
+export default jwtMiddleware;

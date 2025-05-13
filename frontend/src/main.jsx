@@ -5,8 +5,8 @@ import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
 import Dashboard from './pages/Dashboard'
 import { StrictMode } from 'react'
-import BG from './Components/BG'
 import MemebrsTrainersPage from './pages/MemebrsTrainersPage'
+import Landing from './pages/Landing'
 
 
 createRoot(document.getElementById('root')).render(
@@ -16,7 +16,7 @@ createRoot(document.getElementById('root')).render(
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SignupPage />} />
         <Route path='/dashboard' element={<Dashboard />} />
-        <Route path='/' element={<BG />} />
+        <Route path='/' element={<Landing />} />
         <Route path='/memebrs&trainers' element={<MemebrsTrainersPage />} />
       </Routes>
     </BrowserRouter>

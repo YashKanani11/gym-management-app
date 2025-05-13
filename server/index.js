@@ -2,10 +2,12 @@ import express from "express";
 import cors from "cors";
 import adminRouter from "./routes/Admin/auth.js";
 import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
 
 const app = express();
-app.use(cors({ origin: "http://localhost:5173", Credentials: true }));
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(express.json());
+app.use(cookieParser());
 app.use("/api/admin", adminRouter);
 
 const port = 5000;
