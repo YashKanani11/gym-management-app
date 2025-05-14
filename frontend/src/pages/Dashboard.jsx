@@ -10,14 +10,17 @@ import membEnding from '../dummyDatabaseImages/Memebrs/membEnding'
 import salaryDue from '../dummyDatabaseImages/Trainers/salaryDue'
 import BottomNav from '../Components/Dashboard/BottomNav'
 import ListTileDashboard from '../Components/Dashboard/InternalCustomDataModules/ListTileDashboard'
+import { authContext } from '../Context/authContext'
+import { useContext } from 'react'
 
 
 const Dashboard = () => {
+    const { user, setuser } = useContext(authContext);
     return (
         <>
             <BG />
-            <Profile name={userProfile.name} />
-            <section className='grid grid-cols-2 md:gap-4 md:grid-cols-3 gap-2.5 mt-4 md:mt-8'>
+            <Profile name={user} />
+            <section className='grid grid-cols-2 md:gap-4 md:grid-cols-3 lg:grid-cols-4 gap-2.5 mt-4 md:mt-8'>
                 <DataViewComponent title={"Total Income"} component={<Slider sliderData={totalIncome} />} />
                 <DataViewComponent title={"Due Fees"} component={<Slider sliderData={dueFees} />} />
                 <DataViewComponent title={"Membership Ending"} component={<ListTileDashboard listData={membEnding} />} />

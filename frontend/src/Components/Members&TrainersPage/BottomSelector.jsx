@@ -12,7 +12,7 @@ const MemebTrainerSelector = ({ setActiveMembPageValue, activeMembPageValue }) =
     return (
         <>
             <div
-                className={`bottom-0 h-[10%] border-t-4 w-full rounded-tl-3xl rounded-tr-3xl ${commonClasses.mainDiv}
+                className={`bottom-0 backdrop-blur-xl h-[10%] border-t-4 w-full rounded-tl-3xl rounded-tr-3xl ${commonClasses.mainDiv}
                 ${commonClasses.mainmd}`}>
                 <div
                     onClick={() => setActiveMembPageValue(false)}

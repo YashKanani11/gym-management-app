@@ -5,8 +5,11 @@ import InputBox from "../Components/auth/InputBox"
 import HeadingTitleNeon from '../Components/auth/HeadingTitleNeon';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useContext } from 'react';
+import { authContext } from '../Context/authContext';
 
 const LoginPage = () => {
+    const { user, setuser } = useContext(authContext);
     const [form, setForm] = useState([])
     const [isValidEmail, setIsValidEmail] = useState(false);
     const [switchErrorState, setSwitchErrorState] = useState("")
@@ -40,6 +43,7 @@ const LoginPage = () => {
                     password: form.password
                 }, { withCredentials: true })
                 if (res.status == 200) {
+                    setuser(res.data.user)
                     console.log(res.data.user)
                     alert(`Login successful ${res.data.user}`)
                     navigate('/dashboard')
@@ -52,6 +56,10 @@ const LoginPage = () => {
                 console.log(res)
             } catch (error) {
                 console.log(error)
+                if (error.response.data.status == "nonExistingUser") {
+                    alert("User not found, try signing up instead")
+                    navigate("/signup")
+                }
             }
         }
 

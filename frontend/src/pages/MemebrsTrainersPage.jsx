@@ -7,12 +7,13 @@ import AddNewMembTrainer from './AddNewMembTrainer'
 
 const MemebrsTrainersPage = () => {
     const [activeMembPage, setActiveMembPage] = useState(false)
+    const [seeAddMemebTrainerComponent, setSeeAddMemebTrainerComponent] = useState(false)
     return (<>
         <BG />
         <ListTileMembTrainer activeMembPage={activeMembPage} />
-        <AddNewData activeMembPage={activeMembPage} />
+        <AddNewData activeMembPage={activeMembPage} open={setSeeAddMemebTrainerComponent} />
         <BottomSelector activeMembPageValue={activeMembPage} setActiveMembPageValue={setActiveMembPage} />
-        <AddNewMembTrainer activeMembPage={activeMembPage} />
+        {seeAddMemebTrainerComponent && <AddNewMembTrainer activeMembPage={activeMembPage} close={setSeeAddMemebTrainerComponent} />}
     </>)
 }
 

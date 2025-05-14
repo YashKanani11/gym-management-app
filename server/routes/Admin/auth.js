@@ -87,6 +87,15 @@ adminRouter.post("/verify", jwtMiddleware, async (req, res) => {
         message: "Security token not found, consider signing up",
       });
     }
+    const decoded = await jwt.verify(token, "YK2002.yk");
+    const isUser = await AdminModel.findOne({ mailID: decoded.id });
+    if (!isUser) {
+      res.status(401).json({
+        status: "unsuccessfull",
+        message:
+          "Security token found but not matching in DB, consider signing up",
+      });
+    }
     res.status(200).json({
       status: "successfull",
       message: `security token found for mailID ${res.user.id}`,
@@ -94,7 +103,7 @@ adminRouter.post("/verify", jwtMiddleware, async (req, res) => {
   } catch (error) {
     console.log("error verrifieng token at backend", error);
     res.status(500).json({
-      status: "successfull",
+      status: "unsuccessfull",
       message: `Error verrifieng token at backend ${error}`,
     });
   }

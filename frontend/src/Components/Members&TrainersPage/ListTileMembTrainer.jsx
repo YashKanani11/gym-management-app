@@ -157,7 +157,7 @@ const ListTileMembTrainer = ({ activeMembPage }) => {
     ]);
 
     const data = activeMembPage ? membersData : trainersData;
-    return (<section className='h-screen md:h-[80%] w-full flex justify-center md:mt-[7%] md:absolute dark:bg-transparent bg-white/90'>
+    return (<section className='h-screen md:h-[80%] w-full flex justify-center md:mt-[20%] lg:mt-[20%] xl:mt-[10%] md:absolute dark:bg-transparent bg-white/90 backdrop-blur-sm'>
         <div className='h-[85%] md:h-[100%] w-[95%] dark:bg-linear-to-b dark:from-white/50 md:via-white/50 dark:to-black/70 bg-linear-to-b from-white to-black/40 rounded-b-full md:rounded-2xl dark:bg-white/20 shadow-white'>
             <div className='w-full h-[90%] overflow-y-scroll px-2'>
                 <div className='grid grid-cols-4 text-[10px] md:text-2xl gap-1 py-4 border-b-2 sticky top-0 z-10 bg-[#777777]'>

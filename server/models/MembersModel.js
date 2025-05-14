@@ -1,16 +1,21 @@
 import mongoose from "mongoose";
+import CounterModel from "./CustomCounter.js";
 
 const MembersSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  phoneNumber: { type: Number },
-  joinData: { type: Date, required: true },
+  mailID: { type: String, required: true },
+  contactNumber: { type: Number },
+  joinDate: { type: Date, required: true },
   membEndDate: { type: Date },
-  trainersName: { type: String },
+  assignedTrainer: { type: String },
   trainerID: { type: Number },
   workOutPlanID: { type: Number },
-  membType: { type: Number, required: true },
+  membType: { type: String, required: true },
+  password: { type: String, required: true },
   customNote: { type: String },
   weight: { type: Number },
+  optionalNotes: { type: String },
+  memberID: { type: String, unique: true },
   PR: [
     {
       exercise: { type: String, required: true },
@@ -21,7 +26,29 @@ const MembersSchema = new mongoose.Schema({
     },
   ],
 });
-
-const MembersModel = mongoose.model("UserModel", MembersSchema);
+MembersSchema.pre("save", async function (next) {
+  if (this.isNew && !this.memberID) {
+    try {
+      const counter = await CounterModel.findOneAndUpdate(
+        {
+          counterName: "memberID",
+        },
+        {
+          $sec: { counter: 1 },
+        },
+        {
+          new: true,
+          upsert: true,
+        }
+      );
+      this.memberID = "MB-" + counter.counter;
+    } catch (error) {
+      next(error);
+    }
+  } else {
+    next();
+  }
+});
+const MembersModel = mongoose.model("MemberModel", MembersSchema);
 
 export default MembersModel;
