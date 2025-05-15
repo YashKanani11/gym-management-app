@@ -15,6 +15,10 @@ membersrouter.get("/members", jwtMiddleware, async (req, res) => {
       filter.memberID = memberID;
     }
     const members = await MembersModel.find(filter);
+    if (!members) {
+      return res.status(404).json({ message: "Member not found" });
+    }
+    console.log(members);
     res.status(200).json({
       status: "Successfull",
       message: `found members successfully`,

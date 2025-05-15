@@ -8,6 +8,7 @@ import { StrictMode } from 'react'
 import MemebrsTrainersPage from './pages/MemebrsTrainersPage'
 import Landing from './pages/Landing'
 import AuthProvider from './Context/authContext'
+import IndivisualMember from './pages/IndivisualMember'
 
 
 createRoot(document.getElementById('root')).render(
@@ -20,6 +21,7 @@ createRoot(document.getElementById('root')).render(
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/' element={<Landing />} />
           <Route path='/memebrs&trainers' element={<MemebrsTrainersPage />} />
+          <Route path='/member/:memberID' element={<IndivisualMember />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 const ListTileMembTrainer = ({ activeMembPage, refreshOn }) => {
     const [membersData, setMembersData] = useState([]);
     const [trainersData, setTrainersData] = useState([])
@@ -13,7 +14,6 @@ const ListTileMembTrainer = ({ activeMembPage, refreshOn }) => {
                 withCredentials: true,
             })
             if (res.status == 200) {
-                console.log(res.data.data)
                 setMembersData(res.data.data)
             }
             else {
@@ -29,7 +29,6 @@ const ListTileMembTrainer = ({ activeMembPage, refreshOn }) => {
                 withCredentials: true,
             })
             if (res.status == 200) {
-                console.log(res.data.data)
                 setTrainersData(res.data.data)
             }
             else {
@@ -68,10 +67,10 @@ const ListTileMembTrainer = ({ activeMembPage, refreshOn }) => {
 const IndivisualMemebTrainer = ({ data, activeMembPage }) => {
     const date = new Date(data.membEndDate)
     const formatedDate = date.toLocaleDateString("en-GB")
-
+    const navigate = useNavigate()
     return (
-        <div className='grid grid-cols-4 text-[10px] md:text-xl gap-1 py-4 hover:bg-black/70 hover:text-white group cursor-pointer'>
-            <h2 className='text-center col-span-1 border-r flex flex-wrap items-center justify-center'><p className='hidden md:flex text-black group-hover:text-white' >{activeMembPage ? data.memberID : data.trainerID} . </p> {data.name}</h2>
+        <div onClick={() => navigate(`/member/${data.memberID}`)} className='grid grid-cols-4 text-[10px] md:text-xl gap-1 py-4 cursor-pointer active:bg-black/70 active:text-white'>
+            <h2 className='text-center col-span-1 border-r flex flex-wrap items-center justify-center'><p className='hidden md:flex text-black' >{activeMembPage ? data.memberID : data.trainerID}  </p>{`\u00A0 ${data.name}`}</h2>
             <h2 className='text-center col-span-1 border-r flex items-center justify-center'>{activeMembPage ? data.membType : data.noOfTrainees || "0"}</h2>
             <h2 className={`text-center col-span-1 border-r flex items-center justify-center ${new Date().getDate() > formatedDate && 'text-red-600 bg-red-200'} ${!activeMembPage && new Date().getDate() > formatedDate && 'text-red-600 bg-red-200'}`}>{activeMembPage ? formatedDate : data.salaryDue}</h2>
             <h2 className='text-center col-span-1 flex items-center justify-center'>{activeMembPage ? data.workoutType : data.grade || "Not graded yet"}</h2>
