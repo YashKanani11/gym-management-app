@@ -1,0 +1,34 @@
+2/5/2025
+
+Started this project today@11PM.
+chatGPT gave me set of requirement as follows:
+1. Color pallet
+2. App preffreence- mobile first backend heavy work without network
+3. Members/trainers/admin pages
+4. MOney tracker and notification reminders
+
+MVP required as Version 1.0
+  For Now (Version 1):
+  Let’s just make an Admin Page — that’s all I need.
+  I don’t think members care about logging in and checking stuff yet. I’ll show them their end date or plan if they ask. Right now, I just need:
+  - Add/edit/remove members
+  - Track payments  
+  - Get alerts for renewals
+  - Assign trainers
+  - Keep workout notes
+
+  Later, if members want to log in and track their own stuff, maybe we’ll add that as a second version.
+
+Update @2:25 AM
+Made the 1.0 figma design file
+https://www.figma.com/design/h5WNaMZOZ8xyG54byFXk1o/Custom-gym-app-full-stack-project-V1.0?node-id=0-1&t=P6A3pKVM2VCBH8JO-1
+
+
+
+Update 9/5/2025 @11:14PM
+Amongst india pak war and 12+ hours of forced blackouts, I got blacked out even more when while almost finishing the initial V1 of this APP chatGPT somewhere 
+forgot that we can't update taiwind to V4 mid project and now everything crashed. Don't know how much time itll require to compensate for little help from chatGPT.
+Lesson learned: chatGPT (AI) can't still take our job just make freshers like me more hardworking, guess what, It's game on 💪🏼
+
+Update 11/5/2025
+re started the setup, copied code from old to new folder and finnaly done with V1 of app. Also added suppport for dark and light mode meanwhile.
