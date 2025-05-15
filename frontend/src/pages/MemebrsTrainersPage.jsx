@@ -10,7 +10,7 @@ const MemebrsTrainersPage = () => {
     const [seeAddMemebTrainerComponent, setSeeAddMemebTrainerComponent] = useState(false)
     return (<>
         <BG />
-        <ListTileMembTrainer activeMembPage={activeMembPage} />
+        <ListTileMembTrainer activeMembPage={activeMembPage} refreshOn={seeAddMemebTrainerComponent} />
         <AddNewData activeMembPage={activeMembPage} open={setSeeAddMemebTrainerComponent} />
         <BottomSelector activeMembPageValue={activeMembPage} setActiveMembPageValue={setActiveMembPage} />
         {seeAddMemebTrainerComponent && <AddNewMembTrainer activeMembPage={activeMembPage} close={setSeeAddMemebTrainerComponent} />}

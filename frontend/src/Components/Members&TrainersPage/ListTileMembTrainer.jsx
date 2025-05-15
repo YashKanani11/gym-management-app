@@ -1,160 +1,49 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+const ListTileMembTrainer = ({ activeMembPage, refreshOn }) => {
+    const [membersData, setMembersData] = useState([]);
+    const [trainersData, setTrainersData] = useState([])
+    useEffect(() => {
+        fetchMembers()
+        fetchTrainers()
+    }, [refreshOn])
+    const fetchMembers = async () => {
+        try {
+            const res = await axios.get('http://localhost:5000/api/fetch/members', {
+                withCredentials: true,
+            })
+            if (res.status == 200) {
+                console.log(res.data.data)
+                setMembersData(res.data.data)
+            }
+            else {
+                console.log(res)
+            }
+        } catch (error) {
+            console.log("Error fetching members in frontned", error)
+        }
+    }
+    const fetchTrainers = async () => {
+        try {
+            const res = await axios.get('http://localhost:5000/api/fetch/trainers', {
+                withCredentials: true,
+            })
+            if (res.status == 200) {
+                console.log(res.data.data)
+                setTrainersData(res.data.data)
+            }
+            else {
+                console.log(res)
+            }
+        } catch (error) {
+            console.log("Error fetching trainers in frontned", error)
+        }
+    }
+    useEffect(() => {
+        fetchMembers()
+        fetchTrainers()
+    }, [])
 
-const ListTileMembTrainer = ({ activeMembPage }) => {
-    const [membersData, setMembersData] = useState([
-        {
-            id: 1,
-            name: "dummyMemb1",
-            membType: "3 Months",
-            dueDate: 17,
-            workoutType: "Lean body psnd hai"
-        },
-        {
-            id: 2,
-            name: "dummyMemb2",
-            membType: "1 Month",
-            dueDate: 25,
-            workoutType: "Weight gain chahida"
-        },
-        {
-            id: 3,
-            name: "dummyMemb3",
-            membType: "6 Months",
-            dueDate: 5,
-            workoutType: "Powerlifting"
-        },
-        {
-            id: 4,
-            name: "dummyMemb4",
-            membType: "3 Months",
-            dueDate: 12,
-            workoutType: "Fat loss"
-        },
-        {
-            id: 5,
-            name: "dummyMemb5",
-            membType: "1 Year",
-            dueDate: 30,
-            workoutType: "General fitness"
-        },
-        {
-            id: 6,
-            name: "dummyMemb6",
-            membType: "1 Month",
-            dueDate: 3,
-            workoutType: "Cardio aur stamina"
-        },
-        {
-            id: 7,
-            name: "dummyMemb7",
-            membType: "6 Months",
-            dueDate: 19,
-            workoutType: "Muscle gain"
-        },
-        {
-            id: 8,
-            name: "dummyMemb8",
-            membType: "3 Months",
-            dueDate: 11,
-            workoutType: "Strength training"
-        },
-        {
-            id: 9,
-            name: "dummyMemb9",
-            membType: "1 Year",
-            dueDate: 27,
-            workoutType: "Weight loss aur cutting"
-        },
-        {
-            id: 10,
-            name: "dummyMemb10",
-            membType: "1 Month",
-            dueDate: 7,
-            workoutType: "Full body functional"
-        }
-    ]);
-    const [trainersData, setTrainersData] = useState([
-        {
-            id: 1,
-            name: "trainer1",
-            noOfTrainees: 5,
-            salaryDue: 10000,
-            dueOn: 15,
-            grade: "A"
-        },
-        {
-            id: 2,
-            name: "trainer2",
-            noOfTrainees: 8,
-            salaryDue: 12000,
-            dueOn: 20,
-            grade: "B"
-        },
-        {
-            id: 3,
-            name: "trainer3",
-            noOfTrainees: 3,
-            salaryDue: 8000,
-            dueOn: 5,
-            grade: "C"
-        },
-        {
-            id: 4,
-            name: "trainer4",
-            noOfTrainees: 10,
-            salaryDue: 15000,
-            dueOn: 25,
-            grade: "A"
-        },
-        {
-            id: 5,
-            name: "trainer5",
-            noOfTrainees: 6,
-            salaryDue: 9500,
-            dueOn: 12,
-            grade: "B"
-        },
-        {
-            id: 6,
-            name: "trainer6",
-            noOfTrainees: 4,
-            salaryDue: 7000,
-            dueOn: 7,
-            grade: "C"
-        },
-        {
-            id: 7,
-            name: "trainer7",
-            noOfTrainees: 9,
-            salaryDue: 13000,
-            dueOn: 19,
-            grade: "A"
-        },
-        {
-            id: 8,
-            name: "trainer8",
-            noOfTrainees: 2,
-            salaryDue: 6000,
-            dueOn: 4,
-            grade: "C"
-        },
-        {
-            id: 9,
-            name: "trainer9",
-            noOfTrainees: 7,
-            salaryDue: 11000,
-            dueOn: 27,
-            grade: "B"
-        },
-        {
-            id: 10,
-            name: "trainer10",
-            noOfTrainees: 5,
-            salaryDue: 10000,
-            dueOn: 17,
-            grade: "B"
-        }
-    ]);
 
     const data = activeMembPage ? membersData : trainersData;
     return (<section className='h-screen md:h-[80%] w-full flex justify-center md:mt-[20%] lg:mt-[20%] xl:mt-[10%] md:absolute dark:bg-transparent bg-white/90 backdrop-blur-sm'>
@@ -179,10 +68,10 @@ const ListTileMembTrainer = ({ activeMembPage }) => {
 const IndivisualMemebTrainer = ({ data, activeMembPage }) => {
     return (
         <div className='grid grid-cols-4 text-[10px] md:text-xl gap-1 py-4 hover:bg-black/70 hover:text-white group cursor-pointer'>
-            <h2 className='text-center col-span-1 border-r flex flex-wrap items-center justify-center'><p className='hidden md:flex text-black group-hover:text-white' >{data.id} . </p> {data.name}</h2>
-            <h2 className='text-center col-span-1 border-r flex items-center justify-center'>{activeMembPage ? data.membType : data.noOfTrainees}</h2>
+            <h2 className='text-center col-span-1 border-r flex flex-wrap items-center justify-center'><p className='hidden md:flex text-black group-hover:text-white' >{activeMembPage ? data.memberID : data.trainerID} . </p> {data.name}</h2>
+            <h2 className='text-center col-span-1 border-r flex items-center justify-center'>{activeMembPage ? data.membType : data.noOfTrainees || "0"}</h2>
             <h2 className={`text-center col-span-1 border-r flex items-center justify-center ${new Date().getDate() > data.dueDate && 'text-red-600 bg-red-200'} ${!activeMembPage && new Date().getDate() > data.dueOn && 'text-red-600 bg-red-200'}`}>{activeMembPage ? data.dueDate : data.salaryDue}{!activeMembPage && ` on ${data.dueOn}`}</h2>
-            <h2 className='text-center col-span-1 flex items-center justify-center'>{activeMembPage ? data.workoutType : data.grade}</h2>
+            <h2 className='text-center col-span-1 flex items-center justify-center'>{activeMembPage ? data.workoutType : data.grade || "Not graded yet"}</h2>
         </div>
     )
 }

@@ -5,7 +5,7 @@ const jwtMiddleware = (req, res, next) => {
     const token = req.cookies.token;
     if (!token) {
       return res.status(401).json({
-        status: "Unsuccessfull",
+        status: "noToken",
         message: "No token, please login",
       });
     }

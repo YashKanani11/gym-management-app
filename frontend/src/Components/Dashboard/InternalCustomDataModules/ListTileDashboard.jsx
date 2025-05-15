@@ -4,7 +4,7 @@ const ListTileDashboard = ({ listData }) => {
     if (listData) return (<>
         <div className='w-full flex justify-center items-center flex-col'>
             {listData.map((e, i) => (
-                <div className='w-[90%] flex justify-center py-1'>
+                <div key={e.id || i} className='w-[90%] flex justify-center py-1'>
                     <ListEntry index={i + 1} entryData={e} />
                 </div>
             ))}

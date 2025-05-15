@@ -42,6 +42,14 @@ MembersSchema.pre("save", async function (next) {
         }
       );
       this.memberID = "MB-" + counter.counter;
+
+      if (this.isNew && this.membType) {
+        console.log(this.membType);
+        const membDuration = parseInt(this.membType);
+        const membEndDate = new Date(this.joinDate);
+        membEndDate.setMonth(membEndDate.getMonth + membDuration);
+        this.endDate = membEndDate;
+      }
     } catch (error) {
       next(error);
     }

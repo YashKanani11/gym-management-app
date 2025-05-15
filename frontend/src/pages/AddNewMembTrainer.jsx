@@ -25,7 +25,9 @@ const AddNewMembTrainer = ({ activeMembPage, close }) => {
                 }, { withCredentials: true })
                 if (res) {
                     console.log(res)
+                    close(false)
                     alert(`Member added with ID: ${res.data.ID}`)
+
                 }
             } catch (error) {
                 if (error.response.data.status == "preExisting") {
@@ -46,6 +48,7 @@ const AddNewMembTrainer = ({ activeMembPage, close }) => {
                 password: form.password,
             }, { withCredentials: true })
             if (res) {
+                close(false);
                 console.log(res.data.ID)
                 alert(`Trainer added with ID: ${res.data.ID}`)
             }
