@@ -34,7 +34,7 @@ MembersSchema.pre("save", async function (next) {
           counterName: "memberID",
         },
         {
-          $sec: { counter: 1 },
+          $inc: { counter: 1 },
         },
         {
           new: true,
@@ -46,9 +46,9 @@ MembersSchema.pre("save", async function (next) {
       if (this.isNew && this.membType) {
         console.log(this.membType);
         const membDuration = parseInt(this.membType);
-        const membEndDate = new Date(this.joinDate);
-        membEndDate.setMonth(membEndDate.getMonth + membDuration);
-        this.endDate = membEndDate;
+        const endDate = new Date(this.joinDate);
+        endDate.setMonth(endDate.getMonth() + membDuration);
+        this.membEndDate = endDate;
       }
     } catch (error) {
       next(error);

@@ -66,11 +66,14 @@ const ListTileMembTrainer = ({ activeMembPage, refreshOn }) => {
 
 
 const IndivisualMemebTrainer = ({ data, activeMembPage }) => {
+    const date = new Date(data.membEndDate)
+    const formatedDate = date.toLocaleDateString("en-GB")
+
     return (
         <div className='grid grid-cols-4 text-[10px] md:text-xl gap-1 py-4 hover:bg-black/70 hover:text-white group cursor-pointer'>
             <h2 className='text-center col-span-1 border-r flex flex-wrap items-center justify-center'><p className='hidden md:flex text-black group-hover:text-white' >{activeMembPage ? data.memberID : data.trainerID} . </p> {data.name}</h2>
             <h2 className='text-center col-span-1 border-r flex items-center justify-center'>{activeMembPage ? data.membType : data.noOfTrainees || "0"}</h2>
-            <h2 className={`text-center col-span-1 border-r flex items-center justify-center ${new Date().getDate() > data.dueDate && 'text-red-600 bg-red-200'} ${!activeMembPage && new Date().getDate() > data.dueOn && 'text-red-600 bg-red-200'}`}>{activeMembPage ? data.dueDate : data.salaryDue}{!activeMembPage && ` on ${data.dueOn}`}</h2>
+            <h2 className={`text-center col-span-1 border-r flex items-center justify-center ${new Date().getDate() > formatedDate && 'text-red-600 bg-red-200'} ${!activeMembPage && new Date().getDate() > formatedDate && 'text-red-600 bg-red-200'}`}>{activeMembPage ? formatedDate : data.salaryDue}</h2>
             <h2 className='text-center col-span-1 flex items-center justify-center'>{activeMembPage ? data.workoutType : data.grade || "Not graded yet"}</h2>
         </div>
     )

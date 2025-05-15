@@ -9,7 +9,8 @@ const TrainerSchema = new mongoose.Schema({
   trainerID: { type: String, unique: true },
   password: { type: String, required: true },
   optionalNotes: { type: String },
-  salary: { type: Number },
+  salary: { type: Number, required: true },
+  salaryPaid: { type: Number },
 });
 
 TrainerSchema.pre("save", async function (next) {

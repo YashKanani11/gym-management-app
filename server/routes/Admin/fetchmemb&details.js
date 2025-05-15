@@ -28,6 +28,30 @@ membersrouter.get("/members", jwtMiddleware, async (req, res) => {
     });
   }
 });
+membersrouter.get("/members/membEnding", jwtMiddleware, async (req, res) => {
+  try {
+    const members = await MembersModel.find().select(
+      "name memberID membEndDate"
+    );
+    const membersData = members.map((m) => ({
+      name: m.name,
+      value: m.membEndDate ? new Date(m.membEndDate).getDate() : "-",
+      id: m.memberID,
+    }));
+    res.status(200).json({
+      status: "Successfull",
+      membersData,
+    });
+  } catch (error) {
+    console.log(
+      `encountered following error while fetching memb ending data at backend ${error}`
+    );
+    res.status(500).json({
+      status: "Unsuccessfull",
+      message: `Encountered following error while fetching memb ending data at backend ${error}`,
+    });
+  }
+});
 membersrouter.get("/trainers", jwtMiddleware, async (req, res) => {
   try {
     const { name, trainerID } = req.query;
@@ -42,6 +66,28 @@ membersrouter.get("/trainers", jwtMiddleware, async (req, res) => {
       status: "Successfull",
       message: `found trainers successfully`,
       data: trainers,
+    });
+  } catch (error) {
+    console.log(`Error fetching trainers in backend ${error}`);
+    res.status(500).json({
+      status: "Unsuccessful",
+      message: `Error fetching trainers in backend ${error}`,
+    });
+  }
+});
+membersrouter.get("/trainers/pendSalary", jwtMiddleware, async (req, res) => {
+  try {
+    const trainers = await TrainersModel.find().select(
+      "name trainerID salaryPaid salary"
+    );
+    const trainersData = trainers.map((m) => ({
+      name: m.name,
+      value: `₹ ${(m.salary - m.salaryPaid).toLocaleString("en-IN")}`,
+      id: m.trainerID,
+    }));
+    res.status(200).json({
+      status: "Successfull",
+      trainersData,
     });
   } catch (error) {
     console.log(`Error fetching trainers in backend ${error}`);
