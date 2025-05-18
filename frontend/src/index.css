@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+@theme {
+  --color-neonYellow: #d6ff00;
+}
 @font-face {
   font-family: "Joan";
   src: url("./assets/Joan/Joan-Regular.ttf") format("truetype");

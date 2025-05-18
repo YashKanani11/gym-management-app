@@ -32,7 +32,7 @@ accessrouter.post("/add_member", jwtMiddleware, async (req, res) => {
     const newMember = new MembersModel({
       assignedTrainer,
       contactNumber,
-      joinDate,
+      joinDate: new Date(joinDate).toISOString().split("T")[0],
       mailID,
       membType,
       name,
