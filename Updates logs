@@ -32,3 +32,9 @@ Lesson learned: chatGPT (AI) can't still take our job just make freshers like me
 
 Update 11/5/2025
 re started the setup, copied code from old to new folder and finnaly done with V1 of app. Also added suppport for dark and light mode meanwhile.
+
+
+Update 16/5/2025
+Added bunch of backend calculations using advanced mongoDB functions.
+made the website even more responsive using tailwindV4 more advanced responsive classes.
+added indivisual member functianity to make it markatable to actual GYB owners..
