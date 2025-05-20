@@ -21,7 +21,7 @@ const AddNewMembTrainer = ({ activeMembPage, close }) => {
                     name: form.name,
                     optionalNotes: form.optionalNotes,
                     password: form.password,
-                    workoutPlan: form.workoutPlan
+                    workoutType: form.workoutPlan
                 }, { withCredentials: true })
                 if (res) {
                     console.log(res)

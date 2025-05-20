@@ -17,7 +17,7 @@ accessrouter.post("/add_member", jwtMiddleware, async (req, res) => {
       name,
       optionalNotes,
       password,
-      workoutPlan,
+      workoutType,
     } = req.body;
     const ifMember = await MembersModel.findOne({ mailID });
     if (ifMember) {
@@ -38,7 +38,7 @@ accessrouter.post("/add_member", jwtMiddleware, async (req, res) => {
       name,
       optionalNotes,
       password: encryptedPassword,
-      workoutPlan,
+      workoutType,
     });
     const savedMember = await newMember.save();
     console.log("member saved", savedMember);

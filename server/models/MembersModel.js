@@ -9,6 +9,7 @@ const MembersSchema = new mongoose.Schema({
   membEndDate: { type: Date },
   assignedTrainer: { type: String },
   trainerID: { type: Number },
+  workoutType: { type: String },
   workOutPlanID: { type: Number },
   membType: { type: String, required: true },
   password: { type: String, required: true },
@@ -46,9 +47,13 @@ MembersSchema.pre("save", async function (next) {
       if (this.isNew && this.membType) {
         console.log(this.membType);
         const membDuration = parseInt(this.membType);
-        const endDate = new Date(this.joinDate);
-        endDate.setMonth(endDate.getMonth() + membDuration);
-        this.membEndDate = endDate;
+        if (this.joinDate) {
+          this.joinDate = new Date(this.joinDate.toISOString().split("T")[0]);
+
+          const endDate = new Date(this.joinDate);
+          endDate.setMonth(endDate.getMonth() + membDuration);
+          this.membEndDate = new Date(endDate.toISOString().split("T")[0]);
+        }
       }
     } catch (error) {
       next(error);

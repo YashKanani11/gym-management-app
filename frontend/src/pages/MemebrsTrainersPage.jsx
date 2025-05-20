@@ -6,7 +6,7 @@ import ListTileMembTrainer from '../Components/Members&TrainersPage/ListTileMemb
 import AddNewMembTrainer from './AddNewMembTrainer'
 
 const MemebrsTrainersPage = () => {
-    const [activeMembPage, setActiveMembPage] = useState(false)
+    const [activeMembPage, setActiveMembPage] = useState(true)
     const [seeAddMemebTrainerComponent, setSeeAddMemebTrainerComponent] = useState(false)
     return (<>
         <BG />

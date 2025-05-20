@@ -15,6 +15,7 @@ const ListTileMembTrainer = ({ activeMembPage, refreshOn }) => {
             })
             if (res.status == 200) {
                 setMembersData(res.data.data)
+                console.log(res.data.data)
             }
             else {
                 console.log(res)
